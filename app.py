@@ -82,7 +82,7 @@ class ClientApp(FlaskView):
     def _enabled_disable_system(self, enable):
         mqtt_topic = "FWH/2311/Micro850-2.ie.ncsu.edu/SystemCommand"
         dataObj={}
-        dataObj["enable system"] = enable
+        dataObj["start_stop_enable"] = enable
         jsondata = json.dumps(dataObj)
         self._init_mqtt()
         self.mqttc.publish(mqtt_topic, jsondata)

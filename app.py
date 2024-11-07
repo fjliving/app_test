@@ -33,7 +33,7 @@ class ClientApp(FlaskView):
         self.db_host_address = db_host_address
 
         # Initialize MQTT Client
-        self. _init_mqtt()
+        self._init_mqtt()
         print("MQTT Client Initialized")
 
         # Initialize DB Client
@@ -84,6 +84,7 @@ class ClientApp(FlaskView):
         dataObj={}
         dataObj["enable system"] = enable
         jsondata = json.dumps(dataObj)
+        self._init_mqtt()
         self.mqttc.publish(mqtt_topic, jsondata)
         print ("Controller: ", enable)
 
@@ -97,7 +98,7 @@ class ClientApp(FlaskView):
 
 # mqtt_host = "10.155.14.88" Can be used for local testing        
 mqtt_host = "test.mosquitto.org"
-db_host = "postgresql://sm_postgres_db_l308_user:WTxo76idwPTZ9z2oQnVJPDjDOct2YJv3@dpg-crvg1olds78s73emer6g-a.ohio-postgres.render.com/sm_postgres_db_l308"
+db_host = "postgresql://iseros:feaFfs7CwQ90LV9MsO40SG9uWE6jbJvB@dpg-cqp328o8fa8c73c5mrsg-a.ohio-postgres.render.com/sm_db_cw1c"
 
 app_client = ClientApp(mqtt_host, db_host)
 ClientApp.register(app) # Register the class with the app
